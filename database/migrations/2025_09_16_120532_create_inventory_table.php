@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inventory', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_variant_combination_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_variant_id')->constrained()->onDelete('cascade');
             $table->integer('total_quantity')->default(0);
             $table->integer('remaining_quantity')->default(0);
             $table->integer('reserved_quantity')->default(0);

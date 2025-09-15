@@ -20,7 +20,11 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
-    public function productCombinations(){
-        return $this->hasMany(ProductVariantCombinations::class, 'product_id');
+    public function variant(){
+        return $this->hasOne(ProductVariant::class);
+    }
+
+    public function attributeSets(){
+        return $this->belongsTo(AttributeSet::class);
     }
 }

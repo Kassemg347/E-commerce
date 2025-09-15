@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductVariant extends Model
 {
-    protected $fillable = ['name', 'value', 'is_active'];
+    protected $fillable = ['product_id', 'price', 'cost', 'sku', 'is_active','stock'];
+    protected $casts = ['is_active' => 'boolean'];
 
-    protected $casts = [
-        'is_active' => 'boolean',
-    ];
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 
-    public function combinations()
-    {
-        return $this->belongsToMany(Combination::class, 'combination_variants', 'combination_id', 'product_variant_id');
+    public function variantValue(){
+        return $this->hasOne(VariantValue::class);
     }
 
     public function discounts()
